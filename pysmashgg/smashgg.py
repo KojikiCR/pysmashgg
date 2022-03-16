@@ -48,6 +48,10 @@ class SmashGG(object):
     def tournament_show_sets(self, tournament_name, event_name, page_num):
         return tournaments.show_sets(tournament_name, event_name, page_num, self.header, self.auto_retry)
 
+    # List of stream sets for an event
+    def tournament_show_streamed_sets(self, tournament_name, event_name, page_num):
+        return tournaments.show_streamed_sets(tournament_name, event_name, page_num, self.header, self.auto_retry)
+
     # List of entrants for an event
     def tournament_show_entrants(self, tournament_name, event_name, page_num):
         return tournaments.show_entrants(tournament_name, event_name, page_num, self.header, self.auto_retry)
@@ -121,6 +125,10 @@ class SmashGG(object):
     # List of sets for an event
     def event_show_sets(self, event_id, page_num):
         return events.show_sets(event_id, page_num, self.header, self.auto_retry)
+
+    # List of streamed set for an event
+    def event_show_streamed_sets(self, event_id, page_num):
+        return events.show_streamed_sets(event_id, page_num, self.header, self.auto_retry)
 
     # List of entrants for an event
     def event_show_entrants(self, event_id, page_num):

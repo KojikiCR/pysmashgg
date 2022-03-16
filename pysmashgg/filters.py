@@ -144,6 +144,10 @@ def show_sets_filter(response):
         cur_set['entrant2Id'] = node['slots'][1]['entrant']['id']
         cur_set['entrant1Name'] = node['slots'][0]['entrant']['name']
         cur_set['entrant2Name'] = node['slots'][1]['entrant']['name']
+        if node["stream"] is not None:
+            cur_set["streamed"] = True
+        else:
+            cur_set["streamed"] = False
 
         if (node['games'] is not None):
             entrant1_chars = []
@@ -230,7 +234,6 @@ def show_sets_filter(response):
                     cur_player['entrantId'] = node['slots'][j]['entrant']['id']
             
             cur_set['entrant' + str(j+1) + 'Players'] = players
-
         sets.append(cur_set) # Adding that specific set onto the large list of sets
 
     return sets

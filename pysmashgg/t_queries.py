@@ -100,6 +100,9 @@ SHOW_SETS_QUERY = """query EventSets($eventId: ID!, $page: Int!) {
     name
     sets(page: $page, perPage: 18, sortType: STANDARD) {
       nodes {
+        stream {
+          enabled
+        }
         fullRoundText
         games {
           winnerId

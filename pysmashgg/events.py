@@ -15,6 +15,14 @@ def show_sets(event_id, page_num, header, auto_retry):
     response = run_query(SHOW_SETS_QUERY, variables, header, auto_retry)
     data = filters.show_sets_filter(response)
     return data
+
+# Show all stream sets from an event
+def show_streamed_sets(event_id, page_num, header, auto_retry):
+    data = show_sets(event_id, page_num, header, auto_retry)
+    for set in data:
+        if not set["streamed"]:
+            data.remove(set)
+    return data
             
 # Shows all entrants from a specific event 
 def show_entrants(event_id, page_num, header, auto_retry):

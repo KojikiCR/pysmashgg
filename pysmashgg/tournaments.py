@@ -1,3 +1,4 @@
+import json
 from pysmashgg import filters
 from pysmashgg.t_queries import *
 from pysmashgg.api import run_query
@@ -61,6 +62,14 @@ def show_sets(tournament_name, event_name, page_num, header, auto_retry):
     variables = {"eventId": event_id, "page": page_num}
     response = run_query(SHOW_SETS_QUERY, variables, header, auto_retry)
     data = filters.show_sets_filter(response)
+    return data
+
+# Show all stream sets from an event
+def show_streamed_sets(tournament_name, event_name, page_num, header, auto_retry):
+    data = show_sets(tournament_name, event_name, page_num, header, auto_retry)
+    for set in data:
+        if not set["streamed"]:
+            data.remove(set)
     return data
             
 # Shows all entrants from a specific event
