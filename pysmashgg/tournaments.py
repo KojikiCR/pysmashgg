@@ -64,10 +64,9 @@ def show_sets(tournament_name, event_name, page_num, header, auto_retry):
     data = filters.show_sets_filter(response)
     return data
 
-# Show all stream sets from an event
 def show_streamed_sets(tournament_name, event_name, page_num, header, auto_retry):
     data = show_sets(tournament_name, event_name, page_num, header, auto_retry)
-    for set in data:
+    for set in data[:]:
         if not set["streamed"]:
             data.remove(set)
     return data
